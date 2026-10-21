@@ -38,7 +38,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: aldevtools/AL-Go/Actions/DumpWorkflowInfo@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/DumpWorkflowInfo@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         with:
           shell: powershell
 
@@ -47,7 +47,7 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: aldevtools/AL-Go/Actions/WorkflowInitialize@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/WorkflowInitialize@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         with:
           shell: powershell
 
@@ -60,20 +60,20 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Read settings
-        uses: aldevtools/AL-Go/Actions/ReadSettings@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/ReadSettings@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aldevtools/AL-Go/Actions/ReadSecrets@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/ReadSecrets@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'appSourceContext'
 
       - name: Deliver
-        uses: aldevtools/AL-Go/Actions/Deliver@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/Deliver@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -94,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: aldevtools/AL-Go/Actions/WorkflowPostProcess@c2db76e6052359c81c9c5e62b374a2da77dd7988
+        uses: aldevtools/AL-Go/Actions/WorkflowPostProcess@8dabb21f84da6a9b3cd2e99594043288ecd8a363
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
